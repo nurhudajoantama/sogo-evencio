@@ -45,9 +45,27 @@
                         <a class="nav-link text-light" href="/contact">Kontak</a>
                     </li>
                 </ul>
+                @if (auth()->check())
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="bi bi-person-circle fs-2"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                        <li>
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <button type="submit" class="dropdown-item">Logout</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                @else
                 <a class="nav-link" href="/login">
                     <i class="bi bi-person-circle fs-2"></i>
                 </a>
+                @endif
                 </ul>
             </div>
         </div>
