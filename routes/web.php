@@ -2,8 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Dashboard\AdminController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +30,11 @@ route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::prefix('/dashboard')->name('dashboard.')->middleware(['auth', 'can:admin-access'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
+
+    Route::prefix('/users')->controller(UserController::class)->name('users.')->group(function () {
+        Route::get('/',  'index')->name('index');
+    });
+
+    Route::resource('user', UserController::class)->except('show', 'create', 'store');
+    Route::resource('admin', AdminController::class)->except('show');
 });
