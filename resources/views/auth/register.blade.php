@@ -48,25 +48,50 @@
                                         @csrf
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="Name"
-                                                placeholder="Name" name="name">
+                                                placeholder="Name" name="name" value="{{ old('name') }}">
+                                            @error('name')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user" id="Username"
-                                                placeholder="Username" name="username">
+                                                placeholder="Username" name="username" value="{{ old('username') }}">
+                                            @error('username')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user" id="Email"
-                                                placeholder="Email Address" name="email">
+                                                placeholder="Email Address" name="email" value="{{ old('email') }}">
+                                            @error('email')
+                                            <div class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                            @enderror
                                         </div>
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
                                                 <input type="password" class="form-control form-control-user"
                                                     id="Password" placeholder="Password" name="password">
+                                                @error('password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                             <div class="col-sm-6">
                                                 <input type="password" class="form-control form-control-user"
                                                     id="RepeatPassword" placeholder="Repeat Password"
                                                     name="confirm_password">
+                                                @error('confirm_password')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <button href="#" type="submit" class="btn btn-primary btn-user btn-block">

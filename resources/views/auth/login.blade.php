@@ -44,6 +44,16 @@
                                         </a>
                                         <h1 class="h4 text-gray-900 mb-4">Selamat Datang!</h1>
                                     </div>
+                                    @if(session()->has('success'))
+                                    <div class="alert alert-success fade show" role="alert">
+                                        {{ session('success') }}
+                                    </div>
+                                    @endif
+                                    @if(session()->has('error'))
+                                    <div class="alert alert-danger fade show" role="alert">
+                                        {{ session('error') }}
+                                    </div>
+                                    @endif
                                     <form class="user" action="/login" method="POST">
                                         @csrf
                                         <div class="form-group">
