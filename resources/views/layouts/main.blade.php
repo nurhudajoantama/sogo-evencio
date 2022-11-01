@@ -47,12 +47,15 @@
                 </ul>
                 @if (auth()->check())
                 <div class="dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        <i class="bi bi-person-circle fs-2"></i>
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <span>{{ auth()->user()->name }}</span>
+                        <i class="bi bi-person-circle fs-2 mx-2"></i>
                     </a>
                     <ul class="dropdown-menu">
+                        @if (auth()->user()->is_admin)
                         <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                        @endif
                         <li>
                             <form action="/logout" method="POST">
                                 @csrf
@@ -62,7 +65,8 @@
                     </ul>
                 </div>
                 @else
-                <a class="nav-link" href="/login">
+                <a class="nav-link  d-flex align-items-center" href="/login">
+                    <span class="me-2">Login</span>
                     <i class="bi bi-person-circle fs-2"></i>
                 </a>
                 @endif
