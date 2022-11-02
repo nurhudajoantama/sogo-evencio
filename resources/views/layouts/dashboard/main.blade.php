@@ -62,7 +62,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/product">Product/Service</a>
                         <a class="collapse-item" href="cards.html">Information</a>
-                        <a class="collapse-item" href="cards.html">Method Payment</a>
+                        <a class="collapse-item" href="/dashboard/paymentmethods">Payment Method</a>
                     </div>
                 </div>
             </li>
