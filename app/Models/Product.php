@@ -14,6 +14,7 @@ class Product extends Model
         'description',
         'price',
         'is_service',
+        'is_active',
         'shopee_link',
         'tokopedia_link',
     ];

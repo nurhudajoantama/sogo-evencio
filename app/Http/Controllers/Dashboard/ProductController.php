@@ -26,9 +26,13 @@ class ProductController extends Controller
             'description' => 'required',
             'price' => 'required|numeric',
             'is_service' => 'required|boolean',
-            'shopee_link' => 'required',
-            'tokopedia_link' => 'required',
+            'is_active' => 'boolean',
+            'shopee_link' => 'nullable|url',
+            'tokopedia_link' => 'nullable|url',
         ]);
+        if ($request->is_active == null) {
+            $request->merge(['is_active' => false]);
+        }
 
         Product::create($request->all());
 
@@ -47,9 +51,13 @@ class ProductController extends Controller
             'description' => 'required',
             'price' => 'required|numeric',
             'is_service' => 'required|boolean',
-            'shopee_link' => 'required',
-            'tokopedia_link' => 'required',
+            'is_active' => 'boolean',
+            'shopee_link' => 'nullable|url',
+            'tokopedia_link' => 'nullable|url',
         ]);
+        if ($request->is_active == null) {
+            $request->merge(['is_active' => false]);
+        }
 
         $product->update($request->all());
 

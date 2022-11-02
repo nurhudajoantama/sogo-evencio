@@ -52,6 +52,7 @@
                     @enderror
                 </div>
             </div>
+
             <div class="form-group">
                 <input type="text" class="form-control @error('shopee_link') is-invalid @enderror" id="shopee_link"
                     placeholder="shopee link" name="shopee_link" value="{{ old('shopee_link') }}">
@@ -71,7 +72,13 @@
                 </div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary btn-user btn-block">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="1" name="is_active" id="activeCheckbox" checked>
+                <label class="form-check-label" for="activeCheckbox">
+                    Apakah produk ini aktif? (Centang jika aktif)
+                </label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-user btn-block mt-3">
                 Buat Produk / Layanan
             </button>
         </form>
