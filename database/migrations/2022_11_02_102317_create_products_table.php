@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->text('description');
             $table->unsignedBigInteger('price');
             $table->boolean('is_service')->default(false);
+            $table->boolean('is_active')->default(true);
             $table->string('shopee_link');
             $table->string('tokopedia_link');
             $table->timestamps();

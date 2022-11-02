@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
                     @foreach ($products as $product)
-                    <tr>
+                    <tr class="@if(!$product->is_active) table-danger @endif">
                         <td>{{ $product->name }}</td>
                         <td>Rp. {{ $product->price }}</td>
                         <td>

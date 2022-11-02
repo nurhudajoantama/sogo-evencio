@@ -2,8 +2,8 @@
 
 @section('content')
 <!-- Page Heading -->
-<h1 class="h3 mb-2 text-gray-800">Buat Produk / Layanan</h1>
-<p class="mb-4">Halaman ini untuk membuat produk atau layanan pada aplikasi.</p>
+<h1 class="h3 mb-2 text-gray-800">Ubah Produk / Layanan</h1>
+<p class="mb-4">Halaman ini untuk memubah produk atau layanan pada aplikasi.</p>
 
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
@@ -74,7 +74,20 @@
                 </div>
                 @enderror
             </div>
-            <button type="submit" class="btn btn-primary btn-user btn-block">
+            <div class="form-check">
+                <input class="form-check-input @error('is_active') is-invalid @enderror" type="checkbox"
+                    name="is_active" value="1" id="activeCheckbox" @if ( old('is_active') ?? $product->is_active)
+                checked @endif>
+                <label class="form-check-label" for="activeCheckbox">
+                    Apakah produk ini aktif? (Centang jika aktif)
+                </label>
+                @error('is_active')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+            <button type="submit" class="btn btn-primary btn-user btn-block mt-3">
                 Ubah Produk / Layanan
             </button>
         </form>
