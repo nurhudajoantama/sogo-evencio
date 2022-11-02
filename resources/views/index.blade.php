@@ -53,19 +53,32 @@
     <hr style="width:20%;margin:20px auto">
     <div class="row justify-content-center">
         {{-- LOOP POSITION PRODUCT --}}
-        @for ($i = 0; $i < 3; $i++) <div class="col-3">
-            <div class="card" style="width: 18rem;">
+        @foreach ($products as $product)
+        <div class="col-3">
+            <div class="card pb-3" style="width: 18rem;">
                 <div class="card-body text-center">
-                    <h5 class="card-title">Filter Air<br><span style="font-size:15px">Ideal untuk skala kecil</span>
+                    <h5 class="card-title">{{ $product->name }}
+                        <br />
+                        <span style="font-size:15px">{{ $product->description }}</span>
                     </h5>
-                    <p style="font-size:40px" class="card-text">Rp 13.900</p>
-                    <button class="btn btn-primary">Tambah ke Keranjang</button>
-                    <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    <p style="font-size:40px" class="card-text">Rp {{ $product->price }}</p>
+                    <a class="btn btn-primary">Beli Sekarang</a>
+                    @if ($product->shopee_link)
+                    <a href="{{ $product->shopee_link }}" target="_blank" class="btn mt-1"
+                        style="background: #F7482E; color:#fff">Beli
+                        di
+                        shopee</a>
+                    @endif
+                    @if ($product->tokopedia_link)
+                    <a href="{{ $product->tokopedia_link }}" target="_blank" class="btn mt-1"
+                        style="background: #00AA5B; color:#fff">Beli di
+                        shopee</a>
+                    @endif
                 </div>
             </div>
-    </div>
-    @endfor
+        </div>
+        @endforeach
 
-</div>
+    </div>
 </div>
 @endsection
