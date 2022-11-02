@@ -73,7 +73,7 @@
                 @enderror
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="1" name="is_active" id="activeCheckbox">
+                <input class="form-check-input" type="checkbox" value="1" name="is_active" id="activeCheckbox" checked>
                 <label class="form-check-label" for="activeCheckbox">
                     Apakah produk ini aktif? (Centang jika aktif)
                 </label>

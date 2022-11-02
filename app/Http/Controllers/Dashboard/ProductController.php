@@ -27,8 +27,8 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'is_service' => 'required|boolean',
             'is_active' => 'boolean',
-            'shopee_link' => 'required',
-            'tokopedia_link' => 'required',
+            'shopee_link' => 'nullable|url',
+            'tokopedia_link' => 'nullable|url',
         ]);
         if ($request->is_active == null) {
             $request->merge(['is_active' => false]);
@@ -52,8 +52,8 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'is_service' => 'required|boolean',
             'is_active' => 'boolean',
-            'shopee_link' => 'required',
-            'tokopedia_link' => 'required',
+            'shopee_link' => 'nullable|url',
+            'tokopedia_link' => 'nullable|url',
         ]);
         if ($request->is_active == null) {
             $request->merge(['is_active' => false]);
