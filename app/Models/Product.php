@@ -13,6 +13,7 @@ class Product extends Model
         'name',
         'description',
         'price',
+        'weight',
         'is_service',
         'is_active',
         'shopee_link',

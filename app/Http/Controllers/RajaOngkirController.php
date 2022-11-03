@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Setting;
 use Illuminate\Http\Request;
 
 class RajaOngkirController extends Controller
@@ -39,7 +40,7 @@ class RajaOngkirController extends Controller
                 'content-type' => 'application/x-www-form-urlencoded'
             ],
             'form_params' => [
-                'origin' => $request->origin,
+                'origin' => Setting::where('key', 'rajaongkir_origin')->first()->value,
                 'destination' => $request->destination,
                 'weight' => $request->weight,
                 'courier' => $request->courier

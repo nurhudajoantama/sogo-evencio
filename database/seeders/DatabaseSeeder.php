@@ -58,5 +58,12 @@ class DatabaseSeeder extends Seeder
                 'name' => 'Success'
             ],
         ]);
+
+        // Generate settings
+        \App\Models\Setting::insert([
+            [
+                'key' => 'rajaongkir_origin',
+            ]
+        ]);
     }
 }

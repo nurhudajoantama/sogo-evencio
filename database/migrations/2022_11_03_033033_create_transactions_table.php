@@ -18,13 +18,13 @@ class CreateTransactionsTable extends Migration
             $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->foreignId('product_id')->nullable()->references('id')->on('products')->nullOnDelete();
             $table->foreignId('service_id')->nullable()->references('id')->on('products')->nullOnDelete();
-            $table->foreignId('payment_id')->nullable()->references('id')->on('payment')->nullOnDelete();
+            $table->foreignId('payment_id')->nullable()->references('id')->on('payment_methods')->nullOnDelete();
             $table->foreignId('status_id')->references('id')->on('transaction_statuses');
             $table->unsignedBigInteger('total');
             $table->integer('destination');
+            $table->string('detail_destination');
             $table->string('destination_name');
             $table->string('payment_proof')->nullable();
-
             $table->timestamps();
         });
     }

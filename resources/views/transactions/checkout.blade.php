@@ -100,9 +100,8 @@
     const costCheck = async () => {
         if (cityField.value == "" || courierField.value == "") return
         const cost = await getCost({
-            origin: 501,
             destination: cityField.value,
-            weight: 1700,
+            weight: '{{ $product->weight ?? 1000 }}',
             courier: courierField.value,
         })
         serviceField.innerHTML = '<option selected disabled value="">Pilih layanan</option>';
