@@ -69,13 +69,31 @@
             </select>
         </div>
 
-        <div class="form-group mb-2">
+        <div class="form-group mb-3">
             <label for="service-field">Layanan Pengiriman</label>
             <select class="form-control" id="service-field">
                 <option selected disabled value="">Pilih layanan pengiriman</option>
             </select>
         </div>
-        <div class="form-group mb-2">
+
+        <div class="mb-3">
+            <h3 id="total"></h3>
+        </div>
+
+        <div class="form-group mb-3">
+            <label for="service-field">Metode Pembayaran</label>
+            <select class="form-control" id="service-field">
+                <option selected disabled value="">Pilih metode pembayaran</option>
+                @foreach ($payment_methods as $payment_method_c)
+                <option disabled>{{ $payment_method_c->name }}</option>
+                @foreach ($payment_method_c->paymentMethods as $payment_method)
+                <option value="{{ $payment_method->id }}">&nbsp;&nbsp;&nbsp;{{ $payment_method->name }}</option>
+                @endforeach
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group mb-3">
             <button type="submit" class="btn btn-success">Buy</button>
         </div>
     </form>
@@ -121,6 +139,7 @@
     const cityField = document.getElementById('city-field');
     const courierField = document.getElementById('courier-field');
     const serviceField = document.getElementById('service-field');
+    const totalField = document.getElementById('total');
 
     addEventListener('DOMContentLoaded', async () => {
         const provinces = await getProvince();
@@ -158,6 +177,11 @@
             serviceField.appendChild(option);
         });
     }
+
+    serviceField.addEventListener('change', (e) => {
+        let total = parseInt(e.target.value) + parseInt('{{ $product->price }}');
+        totalField.innerText = `Total: Rp. ${total}`;
+    });
 
     cityField.addEventListener('change', async (e) => {
         await costCheck();

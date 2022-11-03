@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PaymentMethod;
+use App\Models\PaymentMethodCategory;
 use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
@@ -25,7 +27,8 @@ class TransactionController extends Controller
         if (!$product->is_service) {
             $services = Product::where('is_service', true)->where('is_active', true)->get();
         }
-        return view('transactions.checkout', compact('product', 'services'));
+        $payment_methods = PaymentMethodCategory::with('paymentMethods')->has('paymentMethods')->get();
+        return view('transactions.checkout', compact('product', 'services', 'payment_methods'));
     }
 
     public function buy(Request $request)
