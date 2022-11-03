@@ -62,7 +62,11 @@
                         <span style="font-size:15px">{{ $product->description }}</span>
                     </h5>
                     <p style="font-size:40px" class="card-text">Rp {{ $product->price }}</p>
-                    <a class="btn btn-primary">Beli Sekarang</a>
+                    <form action="{{ route('checkout') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <button type="submit" class="btn btn-primary">Beli Sekarang</button>
+                    </form>
                     @if ($product->shopee_link)
                     <a href="{{ $product->shopee_link }}" target="_blank" class="btn mt-1"
                         style="background: #F7482E; color:#fff">Beli
