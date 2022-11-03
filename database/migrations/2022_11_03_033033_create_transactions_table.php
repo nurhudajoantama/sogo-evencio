@@ -15,7 +15,7 @@ class CreateTransactionsTable extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->references('id')->on('users')->cascadeOnDelete();
+            $table->foreignId('user_id')->nullable()->references('id')->on('users')->nullOnDelete();
             $table->foreignId('product_id')->nullable()->references('id')->on('products')->nullOnDelete();
             $table->foreignId('service_id')->nullable()->references('id')->on('products')->nullOnDelete();
             $table->foreignId('payment_id')->nullable()->references('id')->on('payment_methods')->nullOnDelete();
@@ -24,6 +24,8 @@ class CreateTransactionsTable extends Migration
             $table->integer('destination');
             $table->string('detail_destination');
             $table->string('destination_name');
+            $table->string('destination_phone');
+            $table->string('shipment_method');
             $table->string('payment_proof')->nullable();
             $table->timestamps();
         });

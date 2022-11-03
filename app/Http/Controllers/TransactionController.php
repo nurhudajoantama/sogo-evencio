@@ -19,13 +19,13 @@ class TransactionController extends Controller
         return view('transactions.show', compact('transaction'));
     }
 
-    public function checkout(Request $request)
+    public function checkout(Product $product)
     {
-        $request->validate([
-            'product_id' => 'required|exists:products,id',
-        ]);
-        $product = Product::find($request->product_id);
-        return view('transactions.checkout', compact('product'));
+        $services = null;
+        if (!$product->is_service) {
+            $services = Product::where('is_service', true)->where('is_active', true)->get();
+        }
+        return view('transactions.checkout', compact('product', 'services'));
     }
 
     public function buy(Request $request)

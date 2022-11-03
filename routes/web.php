@@ -31,7 +31,7 @@ Route::post('/register', [AuthController::class, 'postRegister'])->name('postReg
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::controller(TransactionController::class)->group(function () {
-    Route::post('/checkout', 'checkout')->name('checkout');
+    Route::get('/checkout/{product}', 'checkout')->name('checkout');
 });
 
 Route::prefix('/dashboard')->name('dashboard.')->middleware(['auth', 'can:admin-access'])->group(function () {
