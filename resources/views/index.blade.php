@@ -29,9 +29,31 @@
     <div class="row mb-5 mt-5">
         <h2 class="amiri mt-5 text-center">Informasi dan Berita</h2>
         <hr style="width:20%;margin:20px auto">
-        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
+        <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2" style="height: 300px">
             {{-- LOOP POSITION NEWS --}}
-            @for ($i = 0; $i < 5; $i++) <div class="col-md-5">
+            @foreach ($informations as $inf)
+            <div class="card card-block" style="position: relative; width: 30%">
+                @if ($inf->is_status == 1)
+                    @if ($inf->image)
+                    <div>
+                        <img src="{{ asset('storage/' . $inf->image) }}" alt="{{ $inf->title }}" 
+                        class="img-fluid card-img-top img-border" style="width: 100%; height: 200px;object-fit:contain;">
+                    </div>
+                    @else
+                        <img src="{{ asset("image/blank-image.png") }}" >
+                    @endif
+                    <div style="position: absolute; top:50%; text-align: center; transform: translatey(-50%); padding: 4px; background-color:rgba(0, 0, 0, 0.2)">
+                        <h1>{{ $inf->title }}</h1>
+                        <p>{{ $inf->excerpt }}</p>
+                        <a href="{{route('information.show', $inf)}}" class="">Read More.</a>
+                    </div>
+                @else
+                    @continue
+                @endif
+                
+            </div>
+            @endforeach
+            {{-- @for ($i = 0; $i < 5; $i++) <div class="col-md-5">
                 <div class="card card-block" style="position: relative;">
                     <div
                         style="position: absolute; top:50%; text-align: center; transform: translatey(-50%); padding: 4px; background-color:rgba(0, 0, 0, 0.2)">
@@ -43,7 +65,7 @@
                     <img src="{{ asset('/assets/img/bg.png') }}" class="card-img" alt="...">
                 </div>
         </div>
-        @endfor
+        @endfor --}}
     </div>
 </div>
 
