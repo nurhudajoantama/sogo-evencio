@@ -33,23 +33,21 @@
             {{-- LOOP POSITION NEWS --}}
             @foreach ($informations as $inf)
             <div class="card card-block" style="position: relative; width: 30%">
-                @if ($inf->is_status == 1)
-                    @if ($inf->image)
-                    <div>
-                        <img src="{{ asset('storage/' . $inf->image) }}" alt="{{ $inf->title }}" 
-                        class="img-fluid card-img-top img-border" style="width: 100%; height: 200px;object-fit:contain;">
-                    </div>
-                    @else
-                        <img src="{{ asset("image/blank-image.png") }}" >
-                    @endif
-                    <div style="position: absolute; top:50%; text-align: center; transform: translatey(-50%); padding: 4px; background-color:rgba(0, 0, 0, 0.2)">
-                        <h1>{{ $inf->title }}</h1>
-                        <p>{{ $inf->excerpt }}</p>
-                        <a href="{{route('information.show', $inf)}}" class="">Read More.</a>
-                    </div>
+                
+                @if ($inf->image)
+                <div>
+                    <img src="{{ asset('storage/' . $inf->image) }}" alt="{{ $inf->title }}" 
+                    class="img-fluid card-img-top img-border" style="width: 100%; height: 200px;object-fit:contain;">
+                </div>
                 @else
-                    @continue
+                    <img src="{{ asset("image/blank-image.png") }}" >
                 @endif
+                <div style="position: absolute; top:50%; text-align: center; transform: translatey(-50%); padding: 4px; background-color:rgba(0, 0, 0, 0.2)">
+                    <h1>{{ $inf->title }}</h1>
+                    <p>{{ $inf->excerpt }}</p>
+                    <a href="{{route('information.show', $inf)}}" class="">Read More.</a>
+                </div>
+                
                 
             </div>
             @endforeach

@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function index()
     {
-        $informations = Information::latest()->get();
+        $informations = Information::where('is_status', true)->latest()->get();
 
         return view('index', compact('informations'));
     }
