@@ -74,6 +74,7 @@
                         <i class="bi bi-person-circle fs-2 mx-2"></i>
                     </a>
                     <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/transactions">Transaksi</a></li>
                         @if (auth()->user()->is_admin)
                         <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                         @endif

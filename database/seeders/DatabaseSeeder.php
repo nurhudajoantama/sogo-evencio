@@ -30,5 +30,40 @@ class DatabaseSeeder extends Seeder
                 'name' => 'QR Code'
             ],
         ]);
+
+        // Generate transaction statuses
+        \App\Models\TransactionStatus::insert([
+            [
+                'id' => 1,
+                'name' => 'Unpaid'
+            ],
+            [
+                'id' => 2,
+                'name' => 'Paid'
+            ],
+            [
+                'id' => 3,
+                'name' => 'Accepted'
+            ],
+            [
+                'id' => 4,
+                'name' => 'Sent'
+            ],
+            [
+                'id' => 5,
+                'name' => 'Failed'
+            ],
+            [
+                'id' => 6,
+                'name' => 'Success'
+            ],
+        ]);
+
+        // Generate settings
+        \App\Models\Setting::insert([
+            [
+                'key' => 'rajaongkir_origin',
+            ]
+        ]);
     }
 }

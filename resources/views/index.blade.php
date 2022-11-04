@@ -31,19 +31,22 @@
         <hr style="width:20%;margin:20px auto">
         <div class="scrolling-wrapper row flex-row flex-nowrap mt-4 pb-4 pt-2">
             {{-- LOOP POSITION NEWS --}}
-            @for ($i = 0; $i < 5; $i++) <div class="col-md-5">
+            @foreach ($informations as $inf)
+            <div class="col-md-4">
                 <div class="card card-block" style="position: relative;">
                     <div
-                        style="position: absolute; top:50%; text-align: center; transform: translatey(-50%); padding: 4px; background-color:rgba(0, 0, 0, 0.2)">
-                        <h1 class="text-white amiri fw-bold">Liburan 2 Tempat Rekreasi Seaworld & Samudra</h1>
-                        <a href="#" class="text-white text-right" style="text-decoration: none;">Lebih Lanjut</a>
-                        <a href="#" class="text-white bi bi-chevron-right my-auto"></a>
-
+                        style="position: absolute; top:50%; text-align: center; transform: translatey(-50%); padding: 4px; background-color:rgba(0, 0, 0, 0.2); width:100%">
+                        <h1 class="text-white amiri fw-bold">{{ $inf->title }}</h1>
+                        <a href="{{route('information.show', $inf)}}" class="text-white text-right"
+                            style="text-decoration: none;">Lebih Lanjut</a>
                     </div>
-                    <img src="{{ asset('/assets/img/bg.png') }}" class="card-img" alt="...">
+                    <img src="{{ $inf->image ? asset('storage/' . $inf->image) : asset('images/blank-image.jpg') }}"
+                        alt="{{ $inf->title }}" class="img-fluid card-img"
+                        style="width: 100%; height: 200px;object-fit:cover;">
                 </div>
+            </div>
+            @endforeach
         </div>
-        @endfor
     </div>
 </div>
 
@@ -62,7 +65,8 @@
                         <span style="font-size:15px">{{ $product->description }}</span>
                     </h5>
                     <p style="font-size:40px" class="card-text">Rp {{ $product->price }}</p>
-                    <a class="btn btn-primary">Beli Sekarang</a>
+
+                    <a href="{{ route('checkout', $product) }}" class="btn btn-primary">Beli Sekarang</a>
                     @if ($product->shopee_link)
                     <a href="{{ $product->shopee_link }}" target="_blank" class="btn mt-1"
                         style="background: #F7482E; color:#fff">Beli
