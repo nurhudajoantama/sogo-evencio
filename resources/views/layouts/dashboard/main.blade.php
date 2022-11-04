@@ -70,9 +70,9 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/product">Product/Service</a>
+                        <a class="collapse-item" href="/dashboard/products">Product/Service</a>
                         <a class="collapse-item" href="{{ route('dashboard.information.index') }}">Information</a>
-                        <a class="collapse-item" href="cards.html">Method Payment</a>
+                        <a class="collapse-item" href="/dashboard/paymentmethods">Payment Method</a>
                     </div>
                 </div>
             </li>

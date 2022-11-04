@@ -6,8 +6,10 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\AdminController;
-use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\InformationController;
+use App\Http\Controllers\Dashboard\ProductController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\PaymentMethodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +48,9 @@ Route::prefix('/dashboard')->name('dashboard.')->middleware(['auth', 'can:admin-
     Route::prefix('/users')->controller(UserController::class)->name('users.')->group(function () {
         Route::get('/',  'index')->name('index');
     });
+
+    Route::resource('/products', ProductController::class)->except(['show']);
+    Route::resource('paymentmethods', PaymentMethodController::class)->except('show');
 
     Route::resource('user', UserController::class)->except('show', 'create', 'store');
     Route::resource('admin', AdminController::class)->except('show');
