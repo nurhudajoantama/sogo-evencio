@@ -22,32 +22,31 @@ class InformationController extends Controller
         $informations = Information::with(['user'])->where('title', 'like', '%' . request('search') . '%')
             ->latest()
             ->paginate(5)
-            // ->withQueryString();
             ->appends($request->query());
         return view('dashboard.information.index', compact('informations'));
     }
 
-    public function active($id) {
+    public function active($id)
+    {
         try {
-            Information::where('id',$id)->update([
+            Information::where('id', $id)->update([
                 'is_status' => true
             ]);
-
-            \Session::flash('sukses','Article has been Activated');
+            session()->flash('sukses', 'Article has been Activated');
         } catch (\exception $e) {
-            \Session::flash('gagal', $e->getMessage());
+            session()->flash('gagal', $e->getMessage());
         }
         return redirect()->back();
     }
-    public function nonactive($id) {
+    public function nonactive($id)
+    {
         try {
-            Information::where('id',$id)->update([
+            Information::where('id', $id)->update([
                 'is_status' => false
             ]);
-
-            \Session::flash('sukses','Article has been Nonactivated');
+            session()->flash('sukses', 'Article has been Nonactivated');
         } catch (\exception $e) {
-            \Session::flash('gagal', $e->getMessage());
+            session()->flash('gagal', $e->getMessage());
         }
         return redirect()->back();
     }
@@ -75,20 +74,15 @@ class InformationController extends Controller
             'title' => 'required|min:3',
             'slug' => 'required|min:3',
             'body' => 'required|min:3',
-            'video' => 'string',
+            'video' => 'nullable|string',
             'image' => 'image',
         ]);
         if ($request->file('image')) {
             $validatedData['image'] = $request->file('image')->store('information-images');
         }
-        // $merchant = Merchant::where('user_id',auth()->id())->first();
-
-        // $merchant_id = $merchant->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 30);
-        // $validatedData['merchant_id'] = $merchant->id;
         $validatedData['user_id'] = auth()->id();
-
-        $information = Information::create($validatedData);
+        Information::create($validatedData);
         return redirect()->route('dashboard.information.index')->with('success', 'Article created successfully');
     }
 
@@ -127,9 +121,9 @@ class InformationController extends Controller
         $request->merge(['slug' => Str::slug($request->title)]);
         $validatedData = $request->validate([
             'title' => 'required|min:3',
-            'slug' => 'required|min:3|unique:information,slug,'. $information->id,
+            'slug' => 'required|min:3|unique:information,slug,' . $information->id,
             'body' => 'required|min:3',
-            'video' => 'string',
+            'video' => 'nullable|string',
             'image' => 'image',
         ]);
         if ($request->file('image')) {
