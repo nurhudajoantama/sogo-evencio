@@ -89,6 +89,7 @@ class TransactionController extends Controller
             Storage::delete($transaction->payment_proof);
         }
         $transaction->payment_proof = $request->file('payment_proof')->store('payment_proofs');
+        $transaction->status_id = 2;
         $transaction->save();
         return redirect()->route('transactions.index');
     }

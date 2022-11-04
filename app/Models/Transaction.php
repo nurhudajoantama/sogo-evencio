@@ -4,10 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Haruncpi\LaravelIdGenerator\IdGenerator;
 
 class Transaction extends Model
 {
     use HasFactory;
+
+    protected $keyType = 'string';
 
     protected $fillable = [
         'user_id',
@@ -23,6 +26,14 @@ class Transaction extends Model
         'shipment_method',
         'payment_proof'
     ];
+
+    public static function boot()
+    {
+        parent::boot();
+        self::creating(function ($model) {
+            $model->id = IdGenerator::generate(['table' => $model->table, 'length' => 17, 'prefix' => date('Y') . strtotime(date('y-m-d'))]);
+        });
+    }
 
     public function user()
     {

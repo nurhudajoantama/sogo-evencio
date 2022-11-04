@@ -14,7 +14,7 @@ class CreateTransactionsTable extends Migration
     public function up()
     {
         Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
+            $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->references('id')->on('users')->nullOnDelete();
             $table->foreignId('product_id')->nullable()->references('id')->on('products')->nullOnDelete();
             $table->foreignId('service_id')->nullable()->references('id')->on('products')->nullOnDelete();

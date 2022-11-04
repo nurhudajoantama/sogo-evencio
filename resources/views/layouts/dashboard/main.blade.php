@@ -47,7 +47,7 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/transaction">
+                <a class="nav-link" href="/dashboard/transactions">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Transaction</span></a>
             </li>

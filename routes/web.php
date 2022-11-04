@@ -45,6 +45,11 @@ Route::prefix('/dashboard')->name('dashboard.')->middleware(['auth', 'can:admin-
         Route::get('/',  'index')->name('index');
     });
 
+    Route::prefix('/transactions')->controller(App\Http\Controllers\Dashboard\TransactionController::class)->name('transactions.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/{transactions}/updatestatus', 'updateStatus')->name('updateStatus');
+    });
+
     Route::resource('/products', ProductController::class)->except(['show']);
     Route::resource('paymentmethods', PaymentMethodController::class)->except('show');
 
