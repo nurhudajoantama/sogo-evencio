@@ -21,6 +21,16 @@
     <link href="{{ asset('/assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
+    {{-- TRIX EDITOR --}}
+    <link rel="stylesheet" href="{{URL::asset('css/trix.css')}}">
+    <script src="{{URL::asset('js/trix.js')}}"></script>
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
+
 </head>
 
 <body id="page-top">
@@ -62,6 +72,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/dashboard/products">Product/Service</a>
                         <a class="collapse-item" href="cards.html">Information</a>
+                        <a class="collapse-item" href="/dashboard/contacts">Contacts</a>
                         <a class="collapse-item" href="/dashboard/paymentmethods">Payment Method</a>
                     </div>
                 </div>
@@ -192,6 +203,24 @@
 
         <!-- Page level plugins -->
         <script src="{{ asset('/assets/js/Chart.min.js') }}"></script>
+        <script>
+            // REMOVE ATTACH FILE TRIX JS
+            document.addEventListener('trix-file-accept', function(event) {
+                e.preventDefault();
+            });
+        
+            function previewImage(){
+                const image = document.querySelector('#image');
+                const preview = document.querySelector('.img-preview');
+                preview.style.display = 'block';
+                const oFReader = new FileReader();
+                oFReader.readAsDataURL(image.files[0]);
+                oFReader.onload = function(oFREvent){
+                    preview.src = oFREvent.target.result;
+                };
+            }
+        </script>
+        @yield('script')
 </body>
 
 </html>

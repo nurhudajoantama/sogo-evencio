@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\KontakController;
 use App\Http\Controllers\Dashboard\UserController;
 use App\Http\Controllers\Dashboard\AdminController;
+use App\Http\Controllers\Dashboard\DashboardContactController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\PaymentMethodController;
@@ -29,7 +31,10 @@ Route::get('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/register', [AuthController::class, 'postRegister'])->name('postRegister');
 route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-
+Route::prefix('/kontak')->controller(KontakController::class)->name('kontak.')->group(function () {
+    Route::get('/',  'index')->name('index');
+    Route::resource('/kontak', KontakController::class)->except(['show']);
+});
 Route::prefix('/dashboard')->name('dashboard.')->middleware(['auth', 'can:admin-access'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 
@@ -38,6 +43,7 @@ Route::prefix('/dashboard')->name('dashboard.')->middleware(['auth', 'can:admin-
     });
 
     Route::resource('/products', ProductController::class)->except(['show']);
+    Route::resource('/contacts', DashboardContactController::class)->except(['show']);
     Route::resource('paymentmethods', PaymentMethodController::class)->except('show');
 
     Route::resource('user', UserController::class)->except('show', 'create', 'store');

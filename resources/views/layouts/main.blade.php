@@ -19,6 +19,27 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
+    
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,700,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('/assets/fonts/icomoon/style.css') }}">
+
+    <link rel="stylesheet" href="{{ asset('/assets/css/owl.carousel.min.css"') }}">
+    {{-- Kontak CSS --}}
+    <link rel="stylesheet" href="{{ asset('/assets/css/kontak/style.css') }}">
+
+    {{-- TRIX EDITOR --}}
+    <link rel="stylesheet" href="{{ asset('/assets/css/trix.css') }}">
+    <script src="{{asset('/assets/js/trix.js')}}"></script>
+    {{-- <link rel="stylesheet" href="{{URL::asset('css/trix.css')}}">
+    <script src="{{URL::asset('js/trix.js')}}"></script> --}}
+
+    <style>
+        trix-toolbar [data-trix-button-group="file-tools"] {
+            display: none;
+        }
+    </style>
+
 </head>
 
 <body>
@@ -42,7 +63,7 @@
                         <a class="nav-link text-light" href="/#service">Layanan</a>
                     </li>
                     <li class="nav-item ms-3 ">
-                        <a class="nav-link text-light" href="/contact">Kontak</a>
+                        <a class="nav-link text-light" href="/kontak">Kontak</a>
                     </li>
                 </ul>
                 @if (auth()->check())
@@ -87,6 +108,31 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous">
     </script>
+
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/main.js"></script>
+
+    <script>
+        // REMOVE ATTACH FILE TRIX JS
+        document.addEventListener('trix-file-accept', function(event) {
+            e.preventDefault();
+        });
+    
+        function previewImage(){
+            const image = document.querySelector('#image');
+            const preview = document.querySelector('.img-preview');
+            preview.style.display = 'block';
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+            oFReader.onload = function(oFREvent){
+                preview.src = oFREvent.target.result;
+            };
+        }
+    </script>
+    @yield('script')
 </body>
 
 </html>
