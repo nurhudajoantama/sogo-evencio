@@ -96,6 +96,11 @@
                                         </a>
                                     </p>
                                     @endif
+                                    @if (
+                                    $transaction->status->id == 1 ||
+                                    $transaction->status->id == 2 ||
+                                    $transaction->status->id == 5
+                                    )
                                     <form action="{{ route('uploadPaymentProof', $transaction->id) }}" method="POST"
                                         enctype="multipart/form-data">
                                         @csrf
@@ -112,6 +117,7 @@
                                         </div>
                                         <button type="submit" class="btn btn-primary">Submit</button>
                                     </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>

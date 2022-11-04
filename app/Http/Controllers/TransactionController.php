@@ -7,6 +7,7 @@ use App\Models\PaymentMethodCategory;
 use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TransactionController extends Controller
 {
@@ -81,6 +82,12 @@ class TransactionController extends Controller
             'payment_proof' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
         $transaction = Transaction::find($id);
+        if ($transaction->user_id != auth()->id()) {
+            return redirect()->back();
+        }
+        if ($transaction->payment_proof) {
+            Storage::delete($transaction->payment_proof);
+        }
         $transaction->payment_proof = $request->file('payment_proof')->store('payment_proofs');
         $transaction->save();
         return redirect()->route('transactions.index');
