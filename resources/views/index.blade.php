@@ -76,7 +76,7 @@
                     @if ($product->tokopedia_link)
                     <a href="{{ $product->tokopedia_link }}" target="_blank" class="btn mt-1"
                         style="background: #00AA5B; color:#fff">Beli di
-                        shopee</a>
+                        tokopedia</a>
                     @endif
                 </div>
             </div>
