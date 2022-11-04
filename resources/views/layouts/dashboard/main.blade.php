@@ -88,6 +88,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/dashboard/users">User</a>
                         <a class="collapse-item" href="/dashboard/admin">Admin</a>
+                        <a class="collapse-item" href="/dashboard/setting">Setting</a>
                     </div>
                 </div>
             </li>

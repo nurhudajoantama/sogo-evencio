@@ -63,6 +63,9 @@ class DatabaseSeeder extends Seeder
         \App\Models\Setting::insert([
             [
                 'key' => 'rajaongkir_origin',
+            ],
+            [
+                'key' => 'rajaongkir_address',
             ]
         ]);
     }

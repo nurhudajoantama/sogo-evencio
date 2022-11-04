@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\InformationController;
 use App\Http\Controllers\Dashboard\ProductController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\PaymentMethodController;
+use App\Http\Controllers\Dashboard\SettingController;
 use App\Http\Controllers\TransactionController;
 
 /*
@@ -59,7 +60,11 @@ Route::prefix('/dashboard')->name('dashboard.')->middleware(['auth', 'can:admin-
         Route::get('/active/{id}', [InformationController::class, 'active'])->name('active');
         Route::get('/nonactive/{id}', [InformationController::class, 'nonactive'])->name('nonactive');
     });
-    
+
+    Route::prefix('setting')->controller(SettingController::class)->name('setting.')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::post('/update-address', 'updateAddress')->name('updateAddress');
+    });
 
     Route::prefix('/users')->controller(UserController::class)->name('users.')->group(function () {
         Route::get('/',  'index')->name('index');
