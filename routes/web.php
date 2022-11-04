@@ -31,8 +31,11 @@ Route::post('/register', [AuthController::class, 'postRegister'])->name('postReg
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::controller(TransactionController::class)->middleware('auth')->group(function () {
+    Route::get('/transactions', 'index')->name('transactions.index');
+    Route::get('/transactions/{transactions}', 'show')->name('transactions.show');
     Route::get('/checkout/{product}', 'checkout')->name('checkout');
     Route::post('/buy', 'buy')->name('buy');
+    Route::post('/uploadpaymentproof/{id}', 'uploadPaymentProof')->name('uploadPaymentProof');
 });
 
 Route::prefix('/dashboard')->name('dashboard.')->middleware(['auth', 'can:admin-access'])->group(function () {

@@ -12,13 +12,14 @@ class TransactionController extends Controller
 {
     public function index()
     {
-        $transactions = Transaction::where('user_id', auth()->id())->get();
+        $transactions = Transaction::with([
+            'user',
+            'product',
+            'service',
+            'payment',
+            'status'
+        ])->where('user_id', auth()->id())->latest()->get();
         return view('transactions.index', compact('transactions'));
-    }
-
-    public function show(Transaction $transaction)
-    {
-        return view('transactions.show', compact('transaction'));
     }
 
     public function checkout(Product $product)
@@ -57,7 +58,7 @@ class TransactionController extends Controller
             $total += $service->price;
         }
 
-        $transaction = Transaction::create([
+        Transaction::create([
             'user_id' => auth()->id(),
             'product_id' => $product->id ?? null,
             'service_id' => $service->id ?? null,
@@ -71,6 +72,17 @@ class TransactionController extends Controller
             'shipment_method' => $request->shipment_method,
         ]);
 
-        return redirect()->route('transactions.show', $transaction->id);
+        return redirect()->route('transactions.index');
+    }
+
+    public function uploadPaymentProof($id, Request $request)
+    {
+        $request->validate([
+            'payment_proof' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ]);
+        $transaction = Transaction::find($id);
+        $transaction->payment_proof = $request->file('payment_proof')->store('payment_proofs');
+        $transaction->save();
+        return redirect()->route('transactions.index');
     }
 }

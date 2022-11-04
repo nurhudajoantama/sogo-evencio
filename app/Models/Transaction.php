@@ -23,4 +23,29 @@ class Transaction extends Model
         'shipment_method',
         'payment_proof'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Product::class, 'service_id', 'id');
+    }
+
+    public function payment()
+    {
+        return $this->belongsTo(PaymentMethod::class, 'payment_id', 'id');
+    }
+
+    public function status()
+    {
+        return $this->belongsTo(TransactionStatus::class, 'status_id', 'id');
+    }
 }
