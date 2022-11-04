@@ -21,7 +21,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validation = [
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
@@ -29,7 +29,11 @@ class ProductController extends Controller
             'is_active' => 'boolean',
             'shopee_link' => 'nullable|url',
             'tokopedia_link' => 'nullable|url',
-        ]);
+        ];
+        if ($request->is_service == 0) {
+            $validation['weight'] = 'required|numeric';
+        }
+        $request->validate($validation);
         if ($request->is_active == null) {
             $request->merge(['is_active' => false]);
         }
@@ -46,7 +50,7 @@ class ProductController extends Controller
 
     public function update(Request $request, Product $product)
     {
-        $request->validate([
+        $validation = [
             'name' => 'required',
             'description' => 'required',
             'price' => 'required|numeric',
@@ -54,7 +58,11 @@ class ProductController extends Controller
             'is_active' => 'boolean',
             'shopee_link' => 'nullable|url',
             'tokopedia_link' => 'nullable|url',
-        ]);
+        ];
+        if ($request->is_service == 0) {
+            $validation['weight'] = 'required|numeric';
+        }
+        $request->validate($validation);
         if ($request->is_active == null) {
             $request->merge(['is_active' => false]);
         }

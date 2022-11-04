@@ -17,6 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name');
             $table->text('description');
+            $table->unsignedInteger('weight')->nullable();
             $table->unsignedBigInteger('price');
             $table->boolean('is_service')->default(false);
             $table->boolean('is_active')->default(true);

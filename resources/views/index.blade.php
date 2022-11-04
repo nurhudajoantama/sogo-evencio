@@ -65,7 +65,8 @@
                         <span style="font-size:15px">{{ $product->description }}</span>
                     </h5>
                     <p style="font-size:40px" class="card-text">Rp {{ $product->price }}</p>
-                    <a class="btn btn-primary">Beli Sekarang</a>
+
+                    <a href="{{ route('checkout', $product) }}" class="btn btn-primary">Beli Sekarang</a>
                     @if ($product->shopee_link)
                     <a href="{{ $product->shopee_link }}" target="_blank" class="btn mt-1"
                         style="background: #F7482E; color:#fff">Beli

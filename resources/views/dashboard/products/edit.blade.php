@@ -30,6 +30,15 @@
                 </div>
                 @enderror
             </div>
+            <div class="form-group">
+                <input type="number" class="form-control @error('weight') is-invalid @enderror" id="weight"
+                    placeholder="weight (g)" name="weight" value="{{ old('weight') ?? $product->weight }}">
+                @error('weight')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
             <div class="form-group row">
                 <div class="col-sm-6 mb-3 mb-sm-0">
                     <input type="number" class="form-control @error('price') is-invalid @enderror" id="price"
