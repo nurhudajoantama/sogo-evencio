@@ -8,8 +8,8 @@
         <div class="col-3">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $transaction->product?->name }}</h5>
-                    <h5 class="card-title">{{ $transaction->service?->name }}</h5>
+                    <h5 class="card-title">{{ isset($transaction->product) ? $transaction->product->name : "" }}</h5>
+                    <h5 class="card-title">{{ isset($transaction->service) ? $transaction->service->name : "" }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted mb-3">Rp. {{ $transaction->total }}</h6>
                     <hr />
                     <p class="fw-bold text-muted mb-1">Pembayaran</p>
@@ -40,8 +40,12 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <h5 class="card-title">{{ $transaction->product?->name }}</h5>
-                                    <h5 class="card-title">{{ $transaction->service?->name }}</h5>
+                                    <h5 class="card-title">
+                                        {{ isset($transaction->product) ? $transaction->product->name : "" }}
+                                    </h5>
+                                    <h5 class="card-title">
+                                        {{ isset($transaction->service) ? $transaction->service->name : "" }}
+                                    </h5>
                                     <h6 class="card-subtitle fs-2 mb-2 text-muted mb-3">Rp. {{ $transaction->total }}
                                     </h6>
                                     <hr />

@@ -59,8 +59,12 @@
                                                 <span aria-hidden="true">&times;</span>
                                         </div>
                                         <div class="modal-body">
-                                            <h5 class="card-title">{{ $transaction->product?->name }}</h5>
-                                            <h5 class="card-title">{{ $transaction->service?->name }}</h5>
+                                            <h5 class="card-title">
+                                                {{ isset($transaction->product) ? $transaction->product->name : "" }}
+                                            </h5>
+                                            <h5 class="card-title">
+                                                {{ isset($transaction->service) ? $transaction->service->name : "" }}
+                                            </h5>
                                             <h6 class="card-subtitle fs-2 mb-2 text-muted mb-3">Rp. {{
                                                 $transaction->total }}
                                             </h6>
