@@ -7,9 +7,9 @@
 
 @section('content')
 
-<div class="content">
+<div class="content" >
 
-    <div class="container">
+    <div class="container"style="position: relative">
         <div class="row">
             <div class="col-md-5 mr-auto">
                 <h2>Contact Us</h2>
@@ -82,5 +82,5 @@
             </div>
         </div>
     </div>
-
+</div>
     @endsection

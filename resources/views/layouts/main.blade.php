@@ -96,11 +96,12 @@
     </nav>
 
     @yield('content')
-
-    <div class="container" style="margin-top: 70px;">
-        <footer class="py-3 my-4">
-            <p class="text-center text-muted">© {{ date('Y') }} SOGO Evencio</p>
-        </footer>
+    <div style="background: #0E5E6F">
+        <div class="container" style="margin-top: 70px;">
+            <footer class="py-3 mt-4">
+                <p class="text-center" style="color: #fff">© {{ date('Y') }} SOGO Evencio</p>
+            </footer>
+        </div>
     </div>
 
     <!-- JavaScript Bundle with Popper -->
