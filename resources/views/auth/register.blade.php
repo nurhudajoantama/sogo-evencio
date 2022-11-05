@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sogo Ivencio - Register</title>
+    <title>Sogo Evencio - Register</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('/assets/fontawesome/css/all.min.css') }}" rel="stylesheet" type="text/css">
@@ -40,7 +40,7 @@
                                 <div class="p-5">
                                     <div class="text-center">
                                         <a href="/">
-                                            <h1 class="h4 text-blue-900 mb-4">Sogo Ivencio</h1>
+                                            <h1 class="h4 text-blue-900 mb-4">Sogo Evencio</h1>
                                         </a>
                                         <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                                     </div>

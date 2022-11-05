@@ -28,7 +28,7 @@
         @else
         <input type="hidden" name="product_id" value="{{ $product->id }}">
         <div class="form-group mb-2">
-            <label for="layan">Selakian layanannya?</label>
+            <label for="layan">Sekalian layanannya?</label>
             <select class="form-control" id="layan" name="service_id">
                 <option selected value="">gak dulu</option>
                 <option disabled>&nbsp;&nbsp;&nbsp;List Layanan</option>
