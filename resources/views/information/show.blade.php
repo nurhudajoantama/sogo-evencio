@@ -13,10 +13,13 @@
 
     @if ($information->video)
     <div class="d-flex justify-content-center">
-        <video width="854" height="480" controls>
+        <!-- <video width="854" height="480" controls>
             <source src="{{ $information->video }}">
             Your browser does not support the video tag.
-        </video>
+        </video> -->
+        <iframe width="854" height="480"
+        src="{{ $information->video }}">
+        </iframe>
     </div>
     @endif
     <div class="mt-4">{!! $information->body !!}</div>
